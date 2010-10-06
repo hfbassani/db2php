@@ -1,34 +1,10 @@
 
 	/**
-	 * cached insert statement
+	 * cached statements
 	 *
-	 * @var PDOStatement[]
+	 * @var array<string,array<string,PDOStatement>>
 	 */
 	private static $stmtInsert=array();
-	/**
-	 * cached insert statement with autoincrement fields omitted
-	 *
-	 * @var PDOStatement[]
-	 */
-	private static $stmtInsertAutoIncrement=array();
-	/**
-	 * cached update statement
-	 *
-	 * @var PDOStatement[]
-	 */
-	private static $stmtUpdate=array();
-	/**
-	 * cached delete statement
-	 *
-	 * @var PDOStatement[]
-	 */
-	private static $stmtDelete=array();
-	/**
-	 * cached select statement
-	 *
-	 * @var PDOStatement[]
-	 */
-	private static $stmtSelect=array();
 	private static $cacheStatements=true;
 	
 	/**
@@ -40,32 +16,12 @@
 	 */
 	protected static function prepareStatement(PDO $db, $statement) {
 		if(self::isCacheStatements()) {
-			$dbInstanceId=spl_object_hash($db);
-			if ($statement==self::SQL_INSERT) {
-				if (null==self::$stmtInsert[$dbInstanceId]) {
-					self::$stmtInsert[$dbInstanceId]=$db->prepare($statement);
+			if (in_array($statement, array(self::SQL_INSERT, self::SQL_INSERT_AUTOINCREMENT, self::SQL_UPDATE, self::SQL_SELECT_PK, self::SQL_DELETE_PK))) {
+				$dbInstanceId=spl_object_hash($db);
+				if (null===self::$stmts[$statement][$dbInstanceId]) {
+					self::$stmts[$statement][$dbInstanceId]=$db->prepare($statement);
 				}
-				return self::$stmtInsert[$dbInstanceId];
-			} elseif($statement==self::SQL_INSERT_AUTOINCREMENT) {
-				if (null==self::$stmtInsertAutoIncrement[$dbInstanceId]) {
-					self::$stmtInsertAutoIncrement[$dbInstanceId]=$db->prepare($statement);
-				}
-				return self::$stmtInsertAutoIncrement[$dbInstanceId];
-			} elseif($statement==self::SQL_UPDATE) {
-				if (null==self::$stmtUpdate[$dbInstanceId]) {
-					self::$stmtUpdate[$dbInstanceId]=$db->prepare($statement);
-				}
-				return self::$stmtUpdate[$dbInstanceId];
-			} elseif($statement==self::SQL_SELECT_PK) {
-				if (null==self::$stmtSelect[$dbInstanceId]) {
-					self::$stmtSelect[$dbInstanceId]=$db->prepare($statement);
-				}
-				return self::$stmtSelect[$dbInstanceId];
-			} elseif($statement==self::SQL_DELETE_PK) {
-				if (null==self::$stmtDelete[$dbInstanceId]) {
-					self::$stmtDelete[$dbInstanceId]=$db->prepare($statement);
-				}
-				return self::$stmtDelete[$dbInstanceId];
+				return self::$stmts[$statement][$dbInstanceId];
 			}
 		}
 		return $db->prepare($statement);

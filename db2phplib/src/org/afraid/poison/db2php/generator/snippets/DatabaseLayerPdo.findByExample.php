@@ -89,7 +89,7 @@
 	 * @param bool $prependWhere true if WHERE should be prepended to conditions
 	 * @return string
 	 */
-	public static function buildSqlWhere($filter, $and, $fullyQualifiedNames=true, $prependWhere=false) {
+	public static function buildSqlWhere(array $filter, $and, $fullyQualifiedNames=true, $prependWhere=false) {
 		$sql=null;
 		$andString=$and ? ' AND ' : ' OR ';
 		$first=true;
