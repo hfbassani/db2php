@@ -4,7 +4,7 @@
 	 *
 	 * @var array<string,array<string,PDOStatement>>
 	 */
-	private static $stmtInsert=array();
+	private static $stmts=array();
 	private static $cacheStatements=true;
 	
 	/**
