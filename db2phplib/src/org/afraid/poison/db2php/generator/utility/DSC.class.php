@@ -120,5 +120,38 @@ class DSC {
 	public function getModeSql() {
 		return self::$SORT_MODES[$this->getMode()];
 	}
+
+	/**
+	 * get sql ORDER BY part from DSCs
+	 *
+	 * @param Db2PhpEntity $entity entity instance
+	 * @param array $sort array of DSC instances
+	 * @return string
+	 */
+	public static function buildSqlOrderBy(Db2PhpEntity $entity, $sort) {
+		if (null===$sort) {
+			return '';
+		}
+		if ($sort instanceof DSC) {
+			$sort=array($sort);
+		}
+
+		$sql=null;
+		$first=true;
+		foreach ($sort as $s) {
+			/* @var $s DSC */
+			if (!array_key_exists($s->getField(), $entity->getFieldNames())) {
+				continue;
+			}
+			if ($first) {
+				$sql.=' ORDER BY ';
+				$first=false;
+			} else {
+				$sql.=',';
+			}
+			$sql.=$entity->getFieldNameByFieldId($s->getField()) . ' ' . $s->getModeSql();
+		}
+		return $sql;
+	}
 }
 ?>

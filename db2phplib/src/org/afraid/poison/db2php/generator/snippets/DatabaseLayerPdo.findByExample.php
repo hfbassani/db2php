@@ -36,8 +36,8 @@
 	 * @return <type>[]
 	 */
 	public static function findByFilter(PDO $db, $filter, $and=true, $sort=null) {
-		if ($filter instanceof DFC) {
-			$filter=array($filter);
+		if (!($filter instanceof DFCInterface)) {
+			$filter=new DFCAggregate($filter, $and);
 		}
 		$sql='SELECT * FROM <tableNameQuoted>'
 		. self::buildSqlWhere($filter, $and, false, true)
@@ -89,37 +89,11 @@
 	 * @param bool $prependWhere true if WHERE should be prepended to conditions
 	 * @return string
 	 */
-	public static function buildSqlWhere(array $filter, $and, $fullyQualifiedNames=true, $prependWhere=false) {
-		$sql=null;
-		$andString=$and ? ' AND ' : ' OR ';
-		$first=true;
-		foreach ($filter as $fieldId=>$value) {
-			$dfc=$value instanceof DFC;
-			$resolvedFieldId=$dfc ? $value->getField() : $fieldId;
-			if (!array_key_exists($resolvedFieldId, self::$FIELD_NAMES)) {
-				continue;
-			}
-			if ($first) {
-				if ($prependWhere) {
-					$sql.=' WHERE ';
-				}
-				$first=false;
-			} else {
-				$sql.=$andString;
-			}
-			if ($fullyQualifiedNames) {
-				$sql.=self::SQL_IDENTIFIER_QUOTE . self::SQL_TABLE_NAME . self::SQL_IDENTIFIER_QUOTE . '.';
-			}
-			$sql.=self::SQL_IDENTIFIER_QUOTE . self::$FIELD_NAMES[$resolvedFieldId] . self::SQL_IDENTIFIER_QUOTE;
-			if ($dfc) {
-				/* @var $value DFC */
-				$sql.=$value->getSqlOperatorPrepared();
-
-			} else {
-				$sql.='=?';
-			}
+	public static function buildSqlWhere($filter, $and, $fullyQualifiedNames=true, $prependWhere=false) {
+		if (!($filter instanceof DFCInterface)) {
+			$filter=new DFCAggregate($filter, $and);
 		}
-		return $sql;
+		return $filter->buildSqlWhere(new self::$CLASS_NAME, $fullyQualifiedNames, $prependWhere);
 	}
 
 	/**
@@ -129,47 +103,17 @@
 	 * @return string
 	 */
 	protected static function buildSqlOrderBy($sort) {
-		if (null===$sort) {
-			return '';
-		}
-		if ($sort instanceof DSC) {
-			$sort=array($sort);
-		}
-
-		$sql=null;
-		$first=true;
-		foreach ($sort as $s) {
-			/* @var $s DSC */
-			if (!array_key_exists($s->getField(), self::$FIELD_NAMES)) {
-				continue;
-			}
-			if ($first) {
-				$sql.=' ORDER BY ';
-				$first=false;
-			} else {
-				$sql.=',';
-			}
-			$sql.=self::SQL_IDENTIFIER_QUOTE . self::$FIELD_NAMES[$s->getField()] . self::SQL_IDENTIFIER_QUOTE . ' ' . $s->getModeSql();
-		}
-		return $sql;
+		return DSC::buildSqlOrderBy(new self::$CLASS_NAME, $sort);
 	}
 
 	/**
 	 * bind values from filter to statement
 	 *
 	 * @param PDOStatement $stmt
-	 * @param array $filter
+	 * @param DFCInterface $filter
 	 */
-	protected static function bindValuesForFilter(PDOStatement &$stmt, $filter) {
-		$i=0;
-		foreach ($filter as $fieldId=>$value) {
-			$dfc=$value instanceof DFC;
-			$resolvedFieldId=$dfc ? $value->getField() : $fieldId;
-			if (($dfc && 0!=(DFC::IS_NULL&$value->getMode())) || !array_key_exists($resolvedFieldId, self::$FIELD_NAMES)) {
-				continue;
-			}
-			$stmt->bindValue(++$i, $dfc ? $value->getSqlValue() : $value);
-		}
+	public static function bindValuesForFilter(PDOStatement &$stmt, DFCInterface $filter) {
+		$filter->bindValuesForFilter(new self::$CLASS_NAME, $stmt);
 	}
 
 	/**
@@ -198,8 +142,8 @@
 	 * @return mixed
 	 */
 	public static function deleteByFilter(PDO $db, $filter, $and=true) {
-		if ($filter instanceof DFC) {
-			$filter=array($filter);
+		if (!($filter instanceof DFCInterface)) {
+			$filter=new DFCAggregate($filter, $and);
 		}
 		if (0==count($filter)) {
 			throw new InvalidArgumentException('refusing to delete without filter'); // just comment out this line if you are brave

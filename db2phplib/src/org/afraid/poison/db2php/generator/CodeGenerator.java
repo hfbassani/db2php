@@ -650,6 +650,7 @@ public class CodeGenerator {
 	public String getPreparedStatements() {
 		Set<Field> fields=getTable().getFields();
 		StringBuilder s=new StringBuilder();
+		s.append("\tprivate static $CLASS_NAME=").append(getPhpString(getClassName())).append(";\n");
 		s.append("\tconst SQL_IDENTIFIER_QUOTE='").append(getIdentifierQuoteString()).append("';\n");
 		s.append("\tconst SQL_TABLE_NAME=").append(getPhpString(getTable().getName())).append(";\n");
 
@@ -794,9 +795,10 @@ public class CodeGenerator {
 		StringBuilder s=new StringBuilder("<?php\n");
 		s.append(getSnippetFromFile("CodeGenerator.class.php"));
 		s.append("class ").append(getClassName());
+		s.append(" extends Db2PhpEntityBase");
 		if (getSettings().isUseInterfaces()) {
-			s.append(" implements Db2PhpEntity");
-			s.append(", Db2PhpEntityModificationTracking");
+			//s.append(" implements Db2PhpEntity");
+			s.append(" implements Db2PhpEntityModificationTracking");
 		}
 		if (!settings.getAdditionalInterfaces().isEmpty()) {
 			if (!getSettings().isUseInterfaces()) {
@@ -812,9 +814,9 @@ public class CodeGenerator {
 		s.append(getPreparedStatements());
 		s.append(getConsts());
 		s.append(getMembers());
-		if (isTrackFieldModifications()) {
-			s.append(getSnippetFromFile("CodeGenerator.modificationTracking.php"));
-		}
+//		if (isTrackFieldModifications()) {
+//			s.append(getSnippetFromFile("CodeGenerator.modificationTracking.php"));
+//		}
 		s.append(getAccessors());
 		s.append(getSnippetFromFile("CodeGenerator.php"));
 		s.append(getUtilMethodToArray());
@@ -825,7 +827,7 @@ public class CodeGenerator {
 			s.append(getSnippetFromFile("CodeGenerator.ezc.php"));
 		}
 		s.append(getSnippetFromFile("CodeGenerator.dom.php"));
-		s.append(getSnippetFromFile("CodeGenerator.toString.php"));
+		//s.append(getSnippetFromFile("CodeGenerator.toString.php"));
 		s.append("}\n");
 		s.append("?>");
 		return s.toString();

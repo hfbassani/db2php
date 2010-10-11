@@ -32,7 +32,7 @@
 /**
  * single filter element to determine a criteria for matching a field
  */
-class DFC {
+class DFC implements DFCInterface {
 	/**
 	 * match exact value
 	 */
@@ -89,6 +89,12 @@ class DFC {
 	 * @var int
 	 */
 	private $mode;
+	/**
+	 * uniq id to identify filter
+	 *
+	 * @var string
+	 */
+	private $uniqId;
 
 	/**
 	 * CTOR
@@ -101,6 +107,7 @@ class DFC {
 		$this->field=$field;
 		$this->value=$value;
 		$this->mode=$mode;
+		$this->uniqId=MathUtil::md5Base36(uniqid(rand(), true));
 	}
 
 	/**
@@ -155,6 +162,24 @@ class DFC {
 	 */
 	public function setMode($mode) {
 		$this->mode=$mode;
+	}
+
+	/**
+	 * get uniq id to identify filter
+	 *
+	 * @return string
+	 */
+	public function getUniqId() {
+		return $this->uniqId;
+	}
+
+	/**
+	 * set uniq id
+	 *
+	 * @param string $uniqId
+	 */
+	public function setUniqId($uniqId) {
+		$this->uniqId=$uniqId;
 	}
 
 	/**
@@ -228,6 +253,55 @@ class DFC {
 		}
 		return $this->getValue();
 	}
+
+	/**
+	 * build sql WHERE statement
+	 *
+	 * @param Db2PhpEntity $entity
+	 * @param bool $fullyQualifiedNames
+	 * @param bool $prependWhere
+	 * @return string
+	 */
+	public function buildSqlWhere(Db2PhpEntity $entity, $fullyQualifiedNames=true, $prependWhere=false) {
+		if (!array_key_exists($this->getField(), $entity->getFieldNames())) {
+			return null;
+		}
+		$sql=null;
+		if ($prependWhere) {
+			$sql.=' WHERE ';
+		}
+		return $entity->getFieldNameByFieldId($this->getField(), $fullyQualifiedNames)
+		. $this->getSqlOperator()
+		. $this->getSqlParameterIdentifier($entity);
+	}
+
+	/**
+	 * get identifier used in prepared statement
+	 *
+	 * @param Db2PhpEntity $entity
+	 * @param bool $fullyQualifiedNames
+	 * @return string
+	 */
+	private function getSqlParameterIdentifier(Db2PhpEntity $entity, $fullyQualifiedNames=true) {
+		if (DFC::IS_NULL!=$this->mode) {
+			return ':DFC' . $this->getUniqId();
+		}
+//		$fields=$entity->getFieldNames();
+//		return ':' . ($fullyQualifiedNames ? $entity->getTableName() . '_' : '') . $fields[$this->getField()] . $this->getUniqId();
+	}
+
+	/**
+	 * bind values to statement
+	 *
+	 * @param Db2PhpEntity $entity
+	 * @param PDOStatement $stmt
+	 */
+	public function bindValuesForFilter(Db2PhpEntity $entity, PDOStatement &$stmt) {
+		if (0==(DFC::IS_NULL&$this->getMode()) && array_key_exists($this->getField(), $entity->getFieldNames())) {
+			$stmt->bindValue($this->getSqlParameterIdentifier($entity), $this->getSqlValue());
+		}
+	}
+	
 
 }
 
