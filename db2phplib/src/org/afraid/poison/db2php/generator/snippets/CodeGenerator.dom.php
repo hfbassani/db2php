@@ -6,15 +6,7 @@
 	 * @return DOMDocument
 	 */
 	public function toDOM() {
-		$doc=new DOMDocument();
-		$root=$doc->createElement('<type>');
-		foreach ($this->toHash() as $fieldName=>$value) {
-			$fElem=$doc->createElement($fieldName);
-			$fElem->appendChild($doc->createTextNode($value));
-			$root->appendChild($fElem);
-		}
-		$doc->appendChild($root);
-		return $doc;
+		return self::hashToDomDocument($this->toHash(), '<type>');
 	}
 
 	/**
@@ -24,18 +16,8 @@
 	 * @return <type>
 	 */
 	public static function fromDOMElement(DOMElement $node) {
-		if ('<type>'!=$node->nodeName) {
-			throw new InvalidArgumentException('expected: <type>, got: ' . $node->nodeName, 0);
-		}
-		$result=array();
-		foreach (self::$FIELD_NAMES as $fieldName) {
-			$n=$node->getElementsByTagName($fieldName)->item(0);
-			if (null!==$n) {
-				$result[$fieldName]=$n->nodeValue;
-			}
-		}
 		$o=new <type>();
-		$o->assignByHash($result);
+		$o->assignByHash(self::domNodeToHash($node, self::$FIELD_NAMES));
 <pristine>		return $o;
 	}
 
