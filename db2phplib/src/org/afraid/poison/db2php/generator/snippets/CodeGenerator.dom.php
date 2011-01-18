@@ -17,7 +17,7 @@
 	 */
 	public static function fromDOMElement(DOMElement $node) {
 		$o=new <type>();
-		$o->assignByHash(self::domNodeToHash($node, self::$FIELD_NAMES));
+		$o->assignByHash(self::domNodeToHash($node, self::$FIELD_NAMES, self::$DEFAULT_VALUES, self::$FIELD_TYPES));
 <pristine>		return $o;
 	}
 
