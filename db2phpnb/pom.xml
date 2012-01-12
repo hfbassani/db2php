@@ -32,81 +32,69 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>db2phplib</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-netbeans-api-annotations-common</artifactId>
 			<version>RELEASE71</version>
 		</dependency>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>db2phplib</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-openide-dialogs</artifactId>
 			<version>RELEASE71</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-openide-util</artifactId>
 			<version>RELEASE71</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-openide-filesystems</artifactId>
 			<version>RELEASE71</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-netbeans-modules-projectuiapi</artifactId>
 			<version>RELEASE71</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-netbeans-modules-projectapi</artifactId>
 			<version>RELEASE71</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-netbeans-modules-db</artifactId>
 			<version>RELEASE71</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-openide-awt</artifactId>
 			<version>RELEASE71</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-netbeans-api-progress</artifactId>
 			<version>RELEASE71</version>
-			<type>nbm</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-openide-util-lookup</artifactId>
 			<version>RELEASE71</version>
-			<type>nbm</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-openide-loaders</artifactId>
 			<version>RELEASE71</version>
-			<type>nbm</type>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-openide-nodes</artifactId>
 			<version>RELEASE71</version>
-			<type>nbm</type>
 		</dependency>
 	</dependencies>
 
