@@ -4,10 +4,6 @@
  */
 package org.afraid.poison.db2php.generator;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 /**
  *
  * @author andreas.schnaiter

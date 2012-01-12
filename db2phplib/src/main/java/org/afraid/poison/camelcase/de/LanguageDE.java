@@ -5,8 +5,8 @@
 
 package org.afraid.poison.camelcase.de;
 
-import org.afraid.poison.common.FileUtil;
 import org.afraid.poison.camelcase.Dictionary.Descriptor;
+import org.afraid.poison.common.FileUtil;
 
 /**
  *

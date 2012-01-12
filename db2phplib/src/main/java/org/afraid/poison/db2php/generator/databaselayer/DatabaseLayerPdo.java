@@ -29,8 +29,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.afraid.poison.common.IOUtil;
 import org.afraid.poison.common.StringUtil;
-import org.afraid.poison.db2php.generator.Field;
 import org.afraid.poison.db2php.generator.CodeGenerator;
+import org.afraid.poison.db2php.generator.Field;
 import org.afraid.poison.db2php.generator.ForeignKey;
 
 /**

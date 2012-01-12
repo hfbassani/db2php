@@ -4,7 +4,6 @@
  */
 package org.afraid.poison.camelcase;
 
-import org.afraid.poison.common.string.StringOccurrence;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,6 +14,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import org.afraid.poison.camelcase.Dictionary.Descriptor;
 import org.afraid.poison.common.StringUtil;
+import org.afraid.poison.common.string.StringOccurrence;
 
 /**
  * The CamelCase fairy will sprinkle magic dust on strings.
