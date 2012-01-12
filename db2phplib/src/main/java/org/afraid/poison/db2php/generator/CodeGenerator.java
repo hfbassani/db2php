@@ -20,22 +20,20 @@ package org.afraid.poison.db2php.generator;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import org.afraid.poison.db2php.generator.databaselayer.DatabaseLayer;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.afraid.poison.common.StringUtil;
+import org.afraid.poison.camelcase.CamelCaseFairy;
 import org.afraid.poison.common.CollectionUtil;
 import org.afraid.poison.common.FileUtil;
 import org.afraid.poison.common.IOUtil;
-import org.afraid.poison.camelcase.CamelCaseFairy;
+import org.afraid.poison.common.StringUtil;
 import org.afraid.poison.common.string.StringMutator;
+import org.afraid.poison.db2php.generator.databaselayer.DatabaseLayer;
 
 /**
  * generates PHP code from a tableName
