@@ -25,14 +25,14 @@ public final class PhpClassUtilityWizardIterator implements WizardDescriptor.Ins
 	private WizardDescriptor.Panel[] panels;
 
 	/**
-	 * Initialize panels representing individual wizard's steps and sets
-	 * various properties for them influencing wizard appearance.
+	 * Initialize panels representing individual wizard's steps and sets various
+	 * properties for them influencing wizard appearance.
 	 */
 	private WizardDescriptor.Panel[] getPanels() {
 		if (panels==null) {
 			panels=new WizardDescriptor.Panel[]{
-						new PhpClassUtilityWizardPanel1(wizard)
-					};
+				new PhpClassUtilityWizardPanel1(wizard)
+			};
 			String[] steps=createSteps();
 			for (int i=0; i<panels.length; i++) {
 				Component c=panels[i].getComponent();
@@ -67,24 +67,26 @@ public final class PhpClassUtilityWizardIterator implements WizardDescriptor.Ins
 			PhpClassUtilityVisualPanel1 p1=(PhpClassUtilityVisualPanel1) getPanels()[0].getComponent();
 			String path="/org/afraid/poison/db2php/generator/utility/";
 			InputStream is=null;
-			try {
-				if (p1.isSetDfc()) {
-					is=getClass().getResourceAsStream("/org/afraid/poison/db2php/generator/utility/DFC.class.php");
-					FileUtil.copy(is, new File(p1.getDirectory(), "DFC.class.php"));
-				}
-				if (p1.isSetDsc()) {
-					is=getClass().getResourceAsStream("/org/afraid/poison/db2php/generator/utility/DSC.class.php");
-					FileUtil.copy(is, new File(p1.getDirectory(), "DSC.class.php"));
-				}
-				if (p1.isSetSimpleDatabaseInterface()) {
-					is=getClass().getResourceAsStream("/org/afraid/poison/db2php/generator/utility/SimpleDatabaseInterface.class.php");
-					FileUtil.copy(is, new File(p1.getDirectory(), "SimpleDatabaseInterface.class.php"));
-				}
 
-			} catch (IOException ex) {
-				Exceptions.printStackTrace(ex);
-			} finally {
-				IOUtil.closeQuietly(is);
+			String[] utilFiles=new String[]{
+				"Db2PhpEntityBase.class.php",
+				"Db2PhpEntity.class.php",
+				"Db2PhpEntityModificationTracking.class.php",
+				"DFCAggregate.class.php",
+				"DFC.class.php",
+				"DFCInterface.class.php",
+				"DSC.class.php",
+				"SimpleDatabaseInterface.class.php"};
+			for (String utilFile : utilFiles) {
+				try {
+					is=getClass().getResourceAsStream(path + utilFile);
+					FileUtil.copy(is, new File(p1.getDirectory(), utilFile));
+
+				} catch (IOException ex) {
+					Exceptions.printStackTrace(ex);
+				} finally {
+					IOUtil.closeQuietly(is);
+				}
 			}
 		}
 		return Collections.EMPTY_SET;
@@ -149,27 +151,15 @@ public final class PhpClassUtilityWizardIterator implements WizardDescriptor.Ins
 	// the number of panels changes in response to user input, then uncomment
 	// the following and call when needed: fireChangeEvent();
     /*
-	private Set<ChangeListener> listeners = new HashSet<ChangeListener>(1); // or can use ChangeSupport in NB 6.0
-	public final void addChangeListener(ChangeListener l) {
-	synchronized (listeners) {
-	listeners.add(l);
-	}
-	}
-	public final void removeChangeListener(ChangeListener l) {
-	synchronized (listeners) {
-	listeners.remove(l);
-	}
-	}
-	protected final void fireChangeEvent() {
-	Iterator<ChangeListener> it;
-	synchronized (listeners) {
-	it = new HashSet<ChangeListener>(listeners).iterator();
-	}
-	ChangeEvent ev = new ChangeEvent(this);
-	while (it.hasNext()) {
-	it.next().stateChanged(ev);
-	}
-	}
+	 * private Set<ChangeListener> listeners = new HashSet<ChangeListener>(1);
+	 * // or can use ChangeSupport in NB 6.0 public final void
+	 * addChangeListener(ChangeListener l) { synchronized (listeners) {
+	 * listeners.add(l); } } public final void
+	 * removeChangeListener(ChangeListener l) { synchronized (listeners) {
+	 * listeners.remove(l); } } protected final void fireChangeEvent() {
+	 * Iterator<ChangeListener> it; synchronized (listeners) { it = new
+	 * HashSet<ChangeListener>(listeners).iterator(); } ChangeEvent ev = new
+	 * ChangeEvent(this); while (it.hasNext()) { it.next().stateChanged(ev); } }
 	 */
 	// You could safely ignore this method. Is is here to keep steps which were
 	// there before this wizard was instantiated. It should be better handled

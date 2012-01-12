@@ -32,7 +32,6 @@
 /**
  * Data Sort Criteria
  *
- * @author poison
  */
 class DSC {
 	/**

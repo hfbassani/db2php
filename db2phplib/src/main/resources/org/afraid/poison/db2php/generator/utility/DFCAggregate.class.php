@@ -30,10 +30,11 @@
 */
 
 /**
- * Description of DFCAggregate
+ * filter aggregator
  *
  */
 class DFCAggregate extends ArrayObject implements DFCInterface {
+	//public static $queries=0;
 	/**
 	 * weather to and conditions
 	 *
@@ -112,7 +113,6 @@ class DFCAggregate extends ArrayObject implements DFCInterface {
 	 * @return string
 	 */
 	public function buildSqlWhere(Db2PhpEntity $entity, $fullyQualifiedNames=true, $prependWhere=false) {
-		//foreach ()
 		$sql=null;
 		if (0==$this->count()) {
 			return null;
@@ -150,6 +150,7 @@ class DFCAggregate extends ArrayObject implements DFCInterface {
 	 * @param PDOStatement $stmt
 	 */
 	public function bindValuesForFilter(Db2PhpEntity $entity, PDOStatement &$stmt) {
+		//++self::$queries;
 		/* @var $dfcInterface DFCInterface */
 		foreach ($this->getIterator() as $dfcInterface) {
 			$sql.=$dfcInterface->bindValuesForFilter($entity, $stmt);
@@ -166,23 +167,24 @@ class DFCAggregate extends ArrayObject implements DFCInterface {
 		parent::append($value);
 	}
 
-		/**
+	/**
 	 * append filters
 	 *
 	 * @param array<int,DFC> $filters
 	 */
 	public function appendFilters(array $filters) {
+		$cnt=$this->count();
 		/* @var $filter DFC */
 		foreach ($filters as $fieldId=>$filter) {
 			if ($filter instanceof DFCInterface) {
-				$this->append($filter);
+				$dfc=$filter;
 			} else {
-				$this->append(new DFC($fieldId, $filter, DFC::EXACT));
+				$dfc=new DFC($fieldId, $filter, DFC::EXACT);
 			}
+			$dfc->setUniqId($this->getUniqId() . '_' . ++$i);
+			parent::append($dfc);
 		}
 	}
-
-
 
 }
 ?>

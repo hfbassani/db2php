@@ -31,6 +31,7 @@
 
 /**
  * single filter element to determine a criteria for matching a field
+ * 
  */
 class DFC implements DFCInterface {
 	/**
@@ -107,7 +108,7 @@ class DFC implements DFCInterface {
 		$this->field=$field;
 		$this->value=$value;
 		$this->mode=$mode;
-		$this->uniqId=MathUtil::md5Base36(uniqid(rand(), true));
+		//$this->uniqId=MathUtil::md5Base36(uniqid(rand(), true));
 	}
 
 	/**
@@ -263,14 +264,14 @@ class DFC implements DFCInterface {
 	 * @return string
 	 */
 	public function buildSqlWhere(Db2PhpEntity $entity, $fullyQualifiedNames=true, $prependWhere=false) {
-		if (!array_key_exists($this->getField(), $entity->getFieldNames())) {
+		if (!array_key_exists($this->field, $entity->getFieldNames())) {
 			return null;
 		}
 		$sql=null;
 		if ($prependWhere) {
 			$sql.=' WHERE ';
 		}
-		return $entity->getFieldNameByFieldId($this->getField(), $fullyQualifiedNames)
+		return $sql . $entity->getFieldNameByFieldId($this->getField(), $fullyQualifiedNames)
 		. $this->getSqlOperator()
 		. $this->getSqlParameterIdentifier($entity);
 	}
@@ -283,11 +284,9 @@ class DFC implements DFCInterface {
 	 * @return string
 	 */
 	private function getSqlParameterIdentifier(Db2PhpEntity $entity, $fullyQualifiedNames=true) {
-		if (DFC::IS_NULL!=$this->mode) {
+		if (self::IS_NULL!=$this->mode) {
 			return ':DFC' . $this->getUniqId();
 		}
-//		$fields=$entity->getFieldNames();
-//		return ':' . ($fullyQualifiedNames ? $entity->getTableName() . '_' : '') . $fields[$this->getField()] . $this->getUniqId();
 	}
 
 	/**
@@ -297,7 +296,7 @@ class DFC implements DFCInterface {
 	 * @param PDOStatement $stmt
 	 */
 	public function bindValuesForFilter(Db2PhpEntity $entity, PDOStatement &$stmt) {
-		if (0==(DFC::IS_NULL&$this->getMode()) && array_key_exists($this->getField(), $entity->getFieldNames())) {
+		if (0==(self::IS_NULL&$this->mode) && array_key_exists($this->field, $entity->getFieldNames())) {
 			$stmt->bindValue($this->getSqlParameterIdentifier($entity), $this->getSqlValue());
 		}
 	}

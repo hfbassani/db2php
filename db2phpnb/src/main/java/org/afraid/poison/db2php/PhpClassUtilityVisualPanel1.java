@@ -46,21 +46,7 @@ public final class PhpClassUtilityVisualPanel1 extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dfc = new javax.swing.JCheckBox();
-        simpleDatabaseInterface = new javax.swing.JCheckBox();
         fileSelectionPanel = new org.afraid.poison.db2php.FileSelectionPanel();
-        dsc = new javax.swing.JCheckBox();
-
-        dfc.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(dfc, org.openide.util.NbBundle.getMessage(PhpClassUtilityVisualPanel1.class, "PhpClassUtilityVisualPanel1.dfc.text")); // NOI18N
-        dfc.setToolTipText(org.openide.util.NbBundle.getMessage(PhpClassUtilityVisualPanel1.class, "PhpClassUtilityVisualPanel1.dfc.toolTipText")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(simpleDatabaseInterface, org.openide.util.NbBundle.getMessage(PhpClassUtilityVisualPanel1.class, "PhpClassUtilityVisualPanel1.simpleDatabaseInterface.text")); // NOI18N
-        simpleDatabaseInterface.setEnabled(false);
-
-        dsc.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(dsc, org.openide.util.NbBundle.getMessage(PhpClassUtilityVisualPanel1.class, "PhpClassUtilityVisualPanel1.dsc.text")); // NOI18N
-        dsc.setToolTipText(org.openide.util.NbBundle.getMessage(PhpClassUtilityVisualPanel1.class, "PhpClassUtilityVisualPanel1.dsc.toolTipText")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,32 +54,19 @@ public final class PhpClassUtilityVisualPanel1 extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fileSelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(dfc)
-                    .addComponent(dsc)
-                    .addComponent(simpleDatabaseInterface))
+                .addComponent(fileSelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(dfc)
-                .addGap(18, 18, 18)
-                .addComponent(dsc)
-                .addGap(18, 18, 18)
-                .addComponent(simpleDatabaseInterface)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addComponent(fileSelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(245, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox dfc;
-    private javax.swing.JCheckBox dsc;
     private org.afraid.poison.db2php.FileSelectionPanel fileSelectionPanel;
-    private javax.swing.JCheckBox simpleDatabaseInterface;
     // End of variables declaration//GEN-END:variables
 
 	/**
@@ -101,27 +74,6 @@ public final class PhpClassUtilityVisualPanel1 extends JPanel {
 	 */
 	public File getDirectory() {
 		return getFileSelectionPanel().getDirectory();
-	}
-
-	/**
-	 * @return the dfc
-	 */
-	public boolean isSetDfc() {
-		return dfc.isSelected();
-	}
-
-	/**
-	 * @return the dfc
-	 */
-	public boolean isSetDsc() {
-		return dsc.isSelected();
-	}
-
-	/**
-	 * @return the simpleDatabaseInterface
-	 */
-	public boolean isSetSimpleDatabaseInterface() {
-		return simpleDatabaseInterface.isSelected();
 	}
 
 	/**

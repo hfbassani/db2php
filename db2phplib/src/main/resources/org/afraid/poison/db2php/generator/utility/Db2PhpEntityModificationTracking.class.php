@@ -32,11 +32,13 @@
 /**
  * Interface for modification tracking
  *
+ * @package is
+ * @subpackage entity
  * @author Andreas Schnaiter
  */
 interface Db2PhpEntityModificationTracking {
 	
-    /**
+	/**
 	 * get old instance if this has been modified, otherwise return null
 	 *
 	 * @return TbltarifeofflineModel

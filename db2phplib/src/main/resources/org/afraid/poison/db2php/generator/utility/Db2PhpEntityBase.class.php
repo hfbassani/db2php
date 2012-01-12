@@ -33,21 +33,20 @@
 /**
  * Interface for entity classes
  *
- * @author Andreas Schnaiter
  */
 abstract class Db2PhpEntityBase implements Db2PhpEntity {
 
 	/**
 	 * store for old instance after object has been modified
 	 *
-	 * @var ModuleEntity
+	 * @var Db2PhpEntityBase
 	 */
 	private $oldInstance=null;
 
 	/**
 	 * get old instance if this has been modified, otherwise return null
 	 *
-	 * @return ModuleEntity
+	 * @return Db2PhpEntityBase
 	 */
 	public function getOldInstance() {
 		return $this->oldInstance;
@@ -61,7 +60,7 @@ abstract class Db2PhpEntityBase implements Db2PhpEntity {
 	 * @param mixed $newValue
 	 */
 	protected function notifyChanged($fieldId, $oldValue, $newValue) {
-		if (null===$this->getOldInstance()) {
+		if (null===$this->oldInstance) {
 			$this->oldInstance=clone $this;
 			$this->oldInstance->notifyPristine();
 		}
@@ -73,7 +72,7 @@ abstract class Db2PhpEntityBase implements Db2PhpEntity {
 	 * @return bool
 	 */
 	public function isChanged() {
-		return null!==$this->getOldInstance();
+		return null!==$this->oldInstance;
 	}
 
 	/**
@@ -86,7 +85,7 @@ abstract class Db2PhpEntityBase implements Db2PhpEntity {
 		if (!$this->isChanged()) {
 			return $changed;
 		}
-		$old=$this->getOldInstance()->toArray();
+		$old=$this->oldInstance->toArray();
 		$new=$this->toArray();
 		foreach ($old as $fieldId=>$value) {
 			if ($new[$fieldId]!==$value) {
@@ -123,6 +122,48 @@ abstract class Db2PhpEntityBase implements Db2PhpEntity {
 			$s.=$fieldName . ": " . $value . "\n";
 		}
 		return $s;
+	}
+	
+	/**
+	 * create hash from dom node
+	 *
+	 * @param DOMNode $node
+	 * @param array $fieldNames
+	 * @return array
+	 */
+	protected static function domNodeToHash($node, $fieldNames, $defaultValues=null, $fieldTypes=null) {
+		$result=array();
+		foreach ($node->childNodes as $child) {
+			if ($child instanceof DOMElement && in_array($child->localName, $fieldNames)) {
+				if (0==strlen($child->nodeValue) && null!==$defaultValues) {
+					$result[$child->localName]=$defaultValues[array_search($child->localName, $fieldNames)];
+				} else {
+					$result[$child->localName]=$child->nodeValue;
+				}
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * create DOM document from passed hash
+	 *
+	 * @param array $hash
+	 * @param string $rootNodeName 
+	 * @return DOMDocument
+	 */
+	protected static function hashToDomDocument($hash, $rootNodeName) {
+		$doc=new DOMDocument();
+		$root=$doc->createElement($rootNodeName);
+		foreach ($hash as $fieldName=>$value) {
+			if (null!==$value) {
+				$fElem=$doc->createElement($fieldName);
+				$fElem->appendChild($doc->createTextNode($value));
+				$root->appendChild($fElem);
+			}
+		}
+		$doc->appendChild($root);
+		return $doc;
 	}
 
 }
