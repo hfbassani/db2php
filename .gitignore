@@ -12,3 +12,4 @@ release
 .passwd
 code.google
 one-jar
+/db2phplib/target/
