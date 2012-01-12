@@ -1,5 +1,6 @@
 #!/bin/bash
 if [ ! -f "googlecode_upload.py" ]; then
+	#wget http://support.googlecode.com/svn/trunk/scripts/googlecode_upload_py3k.py -O googlecode_upload.py
 	wget http://support.googlecode.com/svn/trunk/scripts/googlecode_upload.py
 	chmod +x googlecode_upload.py
 fi
