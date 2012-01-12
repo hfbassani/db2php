@@ -9,8 +9,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
 import org.afraid.poison.db2php.generator.xml.Connection;
-import org.netbeans.api.db.explorer.JDBCDriver;
-import org.netbeans.api.db.explorer.JDBCDriverManager;
 import org.openide.util.Exceptions;
 
 public final class PhpClassesFromXmlVisualPanel1 extends JPanel {

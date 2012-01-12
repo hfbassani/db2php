@@ -5,11 +5,7 @@
 package org.afraid.poison.db2php;
 
 import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,17 +15,11 @@ import java.util.Set;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import org.afraid.poison.db2php.generator.CodeGenerator;
 import org.afraid.poison.db2php.generator.xml.Connection;
 import org.afraid.poison.db2php.generator.xml.Connection.TableEvent;
 import org.jdom.JDOMException;
-import org.netbeans.api.db.explorer.ConnectionManager;
-import org.netbeans.api.db.explorer.DatabaseException;
-import org.netbeans.api.db.explorer.JDBCDriver;
-import org.netbeans.api.db.explorer.JDBCDriverManager;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
-import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
 
