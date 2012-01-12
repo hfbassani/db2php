@@ -31,7 +31,6 @@
 
 /**
  * Interface for entity classes
- *
  */
 interface Db2PhpEntity {
 	const PHP_TYPE_BOOL=1;

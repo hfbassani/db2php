@@ -31,7 +31,6 @@
 
 /**
  * Data Sort Criteria
- *
  */
 class DSC {
 	/**

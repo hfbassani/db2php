@@ -31,7 +31,6 @@
 
 /**
  * filter aggregator
- *
  */
 class DFCAggregate extends ArrayObject implements DFCInterface {
 	//public static $queries=0;

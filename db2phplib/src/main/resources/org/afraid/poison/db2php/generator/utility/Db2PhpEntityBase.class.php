@@ -31,8 +31,7 @@
  */
 
 /**
- * Interface for entity classes
- *
+ * base class for entity classes
  */
 abstract class Db2PhpEntityBase implements Db2PhpEntity {
 

@@ -31,7 +31,6 @@
 
 /**
  * Interface for datafilters
- *
  */
 interface DFCInterface {
 

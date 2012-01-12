@@ -31,7 +31,6 @@
 
 /**
  * single filter element to determine a criteria for matching a field
- * 
  */
 class DFC implements DFCInterface {
 	/**

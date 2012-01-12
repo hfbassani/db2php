@@ -31,10 +31,6 @@
 
 /**
  * Interface for modification tracking
- *
- * @package is
- * @subpackage entity
- * @author Andreas Schnaiter
  */
 interface Db2PhpEntityModificationTracking {
 	
