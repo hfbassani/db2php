@@ -1,2 +1,0 @@
-#!/bin/bash
-VERSION=$(grep 'OpenIDE-Module-Specification-Version' manifest.mf |grep -Po '[^\s:]+$')

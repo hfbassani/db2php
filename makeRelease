@@ -1,0 +1,38 @@
+#!/bin/bash
+if [ ! -f "googlecode_upload.py" ]; then
+	wget http://support.googlecode.com/svn/trunk/scripts/googlecode_upload.py
+	chmod +x googlecode_upload.py
+fi
+
+projectDirs="db2phplib db2phpnb"
+
+# parse version
+. .version || exit 1
+
+#cleanup
+for pdir in $projectDirs; do
+	(
+	cd $pdir;
+	mvn clean
+	)
+done
+
+# create source tarball
+./tarsrc || exit 1
+
+# build
+for pdir in $projectDirs; do
+	(
+	cd $pdir;
+	mvn install
+	)
+done
+
+# upload
+./upload || exit 1
+
+# NetBeans plugin page? curl maybe?
+
+# SPAM!
+echo "spam:"
+./spam
