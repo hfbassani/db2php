@@ -25,7 +25,7 @@ done
 for pdir in $projectDirs; do
 	(
 	cd $pdir;
-	mvn install
+	mvn  -Prelease-profile install
 	)
 done
 
