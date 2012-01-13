@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
-package org.afraid.poison.db2php;
+package org.afraid.poison.db2php.nb;
 
 import java.io.File;
 import java.util.Vector;
@@ -71,7 +71,7 @@ public final class PhpClassVisualPanel2 extends JPanel {
         jLabel5 = new javax.swing.JLabel();
         identifierQuoteString = new javax.swing.JComboBox();
         fluentInterfaceSelection = new javax.swing.JCheckBox();
-        fileSelectionPanel = new org.afraid.poison.db2php.FileSelectionPanel();
+        fileSelectionPanel = new org.afraid.poison.db2php.nb.FileSelectionPanel();
         camelCaseFairy = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         ezcSupportSelection = new javax.swing.JCheckBox();
@@ -188,7 +188,7 @@ public final class PhpClassVisualPanel2 extends JPanel {
     private javax.swing.JTextField classNameSuffix;
     private javax.swing.JComboBox databaseLayerSelection;
     private javax.swing.JCheckBox ezcSupportSelection;
-    private org.afraid.poison.db2php.FileSelectionPanel fileSelectionPanel;
+    private org.afraid.poison.db2php.nb.FileSelectionPanel fileSelectionPanel;
     private javax.swing.JCheckBox fluentInterfaceSelection;
     private javax.swing.JCheckBox generateChecksSelection;
     private javax.swing.JComboBox identifierQuoteString;

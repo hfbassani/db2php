@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
-package org.afraid.poison.db2php;
+package org.afraid.poison.db2php.nb;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -82,7 +82,7 @@ public final class PhpClassVisualPanelTableSelection extends JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(PhpClassVisualPanelTableSelection.class, "PhpClassVisualPanelTableSelection.jLabel1.text")); // NOI18N
 
-        tablesSelection.setCellRenderer(new org.afraid.poison.db2php.TablesListCellRenderer());
+        tablesSelection.setCellRenderer(new org.afraid.poison.db2php.nb.TablesListCellRenderer());
         tablesSelection.setEnabled(false);
         jScrollPane1.setViewportView(tablesSelection);
 

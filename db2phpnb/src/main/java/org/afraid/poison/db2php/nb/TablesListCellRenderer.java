@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
-package org.afraid.poison.db2php;
+package org.afraid.poison.db2php.nb;
 
 import java.awt.Color;
 import java.awt.Component;

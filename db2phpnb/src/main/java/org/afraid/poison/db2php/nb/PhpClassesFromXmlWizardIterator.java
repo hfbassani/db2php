@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.afraid.poison.db2php;
+package org.afraid.poison.db2php.nb;
 
 import java.awt.Component;
 import java.io.IOException;

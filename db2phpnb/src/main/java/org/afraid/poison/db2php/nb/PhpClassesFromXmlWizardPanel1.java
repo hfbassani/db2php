@@ -1,40 +1,28 @@
 /*
- * Copyright (C) 2008 Andreas Schnaiter
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
-package org.afraid.poison.db2php;
+package org.afraid.poison.db2php.nb;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import javax.swing.JFileChooser;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import org.afraid.poison.db2php.generator.xml.Connection;
 import org.openide.WizardDescriptor;
+import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
+import org.openide.util.NbPreferences;
 
-public class PhpClassWizardPanel2 implements WizardDescriptor.Panel, ActionListener {
+public class PhpClassesFromXmlWizardPanel1 implements WizardDescriptor.Panel, PropertyChangeListener {
 
-	private WizardDescriptor wizard;
-
-	public PhpClassWizardPanel2(WizardDescriptor wizard) {
-		setWizard(wizard);
-	}
 	/**
 	 * The visual component that displays this panel. If you need to access the
 	 * component from this class, just use getComponent().
@@ -48,7 +36,8 @@ public class PhpClassWizardPanel2 implements WizardDescriptor.Panel, ActionListe
 	@Override
 	public Component getComponent() {
 		if (component==null) {
-			component=new PhpClassVisualPanel2(getWizard());
+			component=new PhpClassesFromXmlVisualPanel1();
+			((PhpClassesFromXmlVisualPanel1) component).getXmlFileChooser().addPropertyChangeListener(this);
 		}
 		return component;
 	}
@@ -64,13 +53,31 @@ public class PhpClassWizardPanel2 implements WizardDescriptor.Panel, ActionListe
 	@Override
 	public boolean isValid() {
 		// If it is always OK to press Next or Finish, then:
-		return true;
-		//return getComponent().isValid();
+		PhpClassesFromXmlVisualPanel1 panel1=(PhpClassesFromXmlVisualPanel1) getComponent();
+		File f=panel1.getXmlFileChooser().getSelectedFile();
+
+		return isValidFile(f);
+		//return true;
 		// If it depends on some condition (form filled out...), then:
 		// return someCondition();
 		// and when this condition changes (last form field filled in...) then:
 		// fireChangeEvent();
 		// and uncomment the complicated stuff below.
+	}
+
+	public static boolean isValidFile(File f) {
+		if (null==f) {
+			return false;
+		}
+		if (f.isFile()) {
+			try {
+				List<Connection> connections=Connection.fromXMLFile(f);
+				return true;
+			} catch (Exception e) {
+				Exceptions.printStackTrace(e);
+			}
+		}
+		return false;
 	}
 	private final Set<ChangeListener> listeners=new HashSet<ChangeListener>(1); // or can use ChangeSupport in NB 6.0
 
@@ -105,29 +112,24 @@ public class PhpClassWizardPanel2 implements WizardDescriptor.Panel, ActionListe
 	// by the user.
 	@Override
 	public void readSettings(Object settings) {
+		String file=NbPreferences.forModule(PhpClassesFromXmlVisualPanel1.class).get("file", null);
+		if (null!=file) {
+			File f=new File(file);
+			if (f.exists()) {
+				((PhpClassesFromXmlVisualPanel1) getComponent()).getXmlFileChooser().setSelectedFile(f);
+			}
+		}
 	}
 
 	@Override
 	public void storeSettings(Object settings) {
-	}
-
-	/**
-	 * @return the wizard
-	 */
-	public WizardDescriptor getWizard() {
-		return wizard;
-	}
-
-	/**
-	 * @param wizard the wizard to set
-	 */
-	public void setWizard(WizardDescriptor wizard) {
-		this.wizard=wizard;
+		NbPreferences.forModule(PhpClassesFromXmlVisualPanel1.class).put("file", ((PhpClassesFromXmlVisualPanel1) getComponent()).getXmlFileChooser().getSelectedFile().getPath());
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		fireChangeEvent();
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (JFileChooser.SELECTED_FILE_CHANGED_PROPERTY.equals(evt.getPropertyName())) {
+			fireChangeEvent();
+		}
 	}
 }
-

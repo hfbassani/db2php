@@ -34,7 +34,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="org.afraid.poison.db2php.FileSelectionPanel" name="fileSelectionPanel">
+    <Component class="org.afraid.poison.db2php.nb.FileSelectionPanel" name="fileSelectionPanel">
     </Component>
   </SubComponents>
 </Form>

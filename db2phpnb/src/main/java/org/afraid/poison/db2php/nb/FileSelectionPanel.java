@@ -9,7 +9,7 @@
  * Created on Jul 22, 2009, 8:31:46 PM
  */
 
-package org.afraid.poison.db2php;
+package org.afraid.poison.db2php.nb;
 
 import java.io.File;
 import java.net.URISyntaxException;

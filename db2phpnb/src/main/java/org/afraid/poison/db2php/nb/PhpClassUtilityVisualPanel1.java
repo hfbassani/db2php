@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.afraid.poison.db2php;
+package org.afraid.poison.db2php.nb;
 
 import java.io.File;
 import javax.swing.JPanel;
@@ -46,7 +46,7 @@ public final class PhpClassUtilityVisualPanel1 extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fileSelectionPanel = new org.afraid.poison.db2php.FileSelectionPanel();
+        fileSelectionPanel = new org.afraid.poison.db2php.nb.FileSelectionPanel();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,7 +66,7 @@ public final class PhpClassUtilityVisualPanel1 extends JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.afraid.poison.db2php.FileSelectionPanel fileSelectionPanel;
+    private org.afraid.poison.db2php.nb.FileSelectionPanel fileSelectionPanel;
     // End of variables declaration//GEN-END:variables
 
 	/**

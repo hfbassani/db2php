@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Services"/>
+    <folder name="Templates">
+        <folder name="Scripting">
+            <file name="phpClass">
+                <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/afraid/poison/db2php/nb/php.png"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.afraid.poison.db2php.nb.Bundle"/>
+                <attr name="instantiatingIterator" newvalue="org.afraid.poison.db2php.nb.PhpClassWizardIterator"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/org/afraid/poison/db2php/nb/phpClass.html"/>
+            </file>
+            <file name="phpClassUtility">
+                <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/afraid/poison/db2php/nb/php.png"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.afraid.poison.db2php.nb.Bundle"/>
+                <attr name="instantiatingIterator" newvalue="org.afraid.poison.db2php.nb.PhpClassUtilityWizardIterator"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/org/afraid/poison/db2php/nb/phpClassUtility.html"/>
+            </file>
+            <file name="phpClassesFromXml">
+                <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/afraid/poison/db2php/nb/php.png"/>
+                <attr name="displayName" bundlevalue="org.afraid.poison.db2php.nb.Bundle#Templates/Scripting/phpClassesFromXml"/>
+                <attr name="instantiatingIterator" newvalue="org.afraid.poison.db2php.nb.PhpClassesFromXmlWizardIterator"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/org/afraid/poison/db2php/nb/phpClassesFromXml.html"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>
