@@ -28,7 +28,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>org.afraid.poison.db2phpcli.Main</mainClass>
+							<mainClass>org.afraid.poison.db2php.cli.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
