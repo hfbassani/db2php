@@ -1,2 +1,2 @@
 #!/bin/bash
-VERSION=$(grep 'OpenIDE-Module-Specification-Version' db2phpnb/src/main/nbm/manifest.mf |grep -Po '[^\s:]+$')
+VERSION=$(grep 'db2phplib-version' db2phplib/src/main/resources/version.properties |grep -Po '[^\s:]+$')

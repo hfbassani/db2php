@@ -5,7 +5,7 @@
 
 	<groupId>org.afraid.poison</groupId>
 	<artifactId>db2phplib</artifactId>
-	<version>1.104</version>
+	<version>1.105</version>
 	<packaging>jar</packaging>
 
 	<name>db2phplib</name>

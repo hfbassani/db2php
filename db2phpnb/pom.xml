@@ -5,7 +5,7 @@
 
 	<groupId>org.afraid.poison</groupId>
 	<artifactId>db2phpnb</artifactId>
-	<version>1.104</version>
+	<version>1.105</version>
 	<packaging>nbm</packaging>
 
 	<name>db2phpnb</name>
