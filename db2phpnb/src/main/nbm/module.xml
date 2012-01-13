@@ -7,4 +7,5 @@
 	<licenseName>GPLv3</licenseName>
     <licenseFile>COPYING</licenseFile>
 	<author>Andreas Schnaiter</author>
+	<homepageUrl>http://code.google.com/p/db2php/</homepageUrl>
 </nbm>
