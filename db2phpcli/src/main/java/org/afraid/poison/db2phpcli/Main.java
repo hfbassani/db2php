@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.afraid.poison.db2php.generator;
+package org.afraid.poison.db2phpcli;
 
 import java.io.File;
 import java.io.FileNotFoundException;

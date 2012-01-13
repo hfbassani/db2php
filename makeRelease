@@ -2,9 +2,6 @@
 
 projectDirs="db2phplib db2phpnb"
 
-# parse version
-. .version || exit 1
-
 #cleanup
 for pdir in $projectDirs; do
 	(
@@ -14,7 +11,7 @@ for pdir in $projectDirs; do
 done
 
 # create source tarball
-./tarsrc || exit 1
+#./tarsrc || exit 1
 
 # build
 for pdir in $projectDirs; do
