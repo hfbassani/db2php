@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nbm>
-    <!--
-    <moduleType>autoload</moduleType>
-    <codeNameBase>org.afraid.poison.db2phpnb/1</codeNameBase>
-    -->
 	<licenseName>GPLv3</licenseName>
-    <licenseFile>COPYING</licenseFile>
+	<licenseFile>COPYING</licenseFile>
 	<author>Andreas Schnaiter</author>
 	<homepageUrl>http://code.google.com/p/db2php/</homepageUrl>
 </nbm>
