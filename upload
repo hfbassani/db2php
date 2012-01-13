@@ -1,9 +1,7 @@
 #!/bin/bash
-if [ ! -f "googlecode_upload_py3k.py" ]; then
-	wget http://support.googlecode.com/svn/trunk/scripts/googlecode_upload_py3k.py
-	chmod +x googlecode_upload_py3k.py
-	#wget http://support.googlecode.com/svn/trunk/scripts/googlecode_upload.py
-	#chmod +x googlecode_upload.py
+gcul="googlecode-upload-1.0-cli.jar"
+if [ ! -f "$gcul" ]; then
+	wget "http://googlecode-upload-java.googlecode.com/files/${gcul}" -O "$gcul"
 fi
 
 # parse version
@@ -13,7 +11,7 @@ fi
 echo "upload ${VERSION}:"
 . .passwd || exit 1
 
-upcmd="python3 ./googlecode_upload_py3k.py -p $GPROJECT -u $GUSER -w $GPASSWORD"
+upcmd="java -jar $gcul  -n $GPROJECT -u $GUSER -p $GPASSWORD"
 #echo $upcmd
 $upcmd -s "Source code v${VERSION}" -l "OpSys-All,Type-Source,Featured" "db2php-${VERSION}.tar.bz2" || exit 1
 $upcmd -s "NetBeans plugin v${VERSION}" -l "OpSys-All,Type-Package,NetBeans,Featured" "db2phpnb/target/db2phpnb-${VERSION}.nbm" || exit 1

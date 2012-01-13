@@ -8,6 +8,7 @@ release
 *.bz2
 *.gz
 *.nbm
+*.jar
 .googlecode
 .passwd
 code.google
