@@ -46,7 +46,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<finalName>db2php-cli-${project.version}</finalName>
+					<finalName>${project.artifactId}-bin-${project.version}</finalName>
 				</configuration>
 			</plugin>
 			<plugin>

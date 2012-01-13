@@ -15,4 +15,4 @@ upcmd="java -jar $gcul  -n $GPROJECT -u $GUSER -p $GPASSWORD"
 #echo $upcmd
 #$upcmd -s "Source code v${VERSION}" -l "OpSys-All,Type-Source,Featured" "db2php-${VERSION}.tar.bz2" || exit 1
 $upcmd -s "NetBeans plugin v${VERSION}" -l "OpSys-All,Type-Package,NetBeans,Featured" "db2phpnb/target/db2phpnb-${VERSION}.nbm" || exit 1
-$upcmd -s "CLI v${VERSION}" -l "OpSys-All,Type-Executable,Featured" "db2phplib/target/db2php-cli-${VERSION}.jar" || exit 1
+$upcmd -s "CLI v${VERSION}" -l "OpSys-All,Type-Executable,Featured" "db2phpcli/target/db2phpcli-bin-${VERSION}.jar" || exit 1

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projectDirs="db2phplib db2phpnb"
+projectDirs="db2phplib db2phpnb db2phpcli"
 
 #cleanup
 for pdir in $projectDirs; do
