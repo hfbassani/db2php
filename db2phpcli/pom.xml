@@ -2,25 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>org.afraid.poison</groupId>
+	<parent>
+		<groupId>org.afraid.poison</groupId>
+		<artifactId>db2php</artifactId>
+		<version>1.105</version>
+	</parent>
 	<artifactId>db2phpcli</artifactId>
-	<version>1.105</version>
 	<packaging>jar</packaging>
 
 	<name>db2phpcli</name>
-	<url>http://maven.apache.org</url>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>

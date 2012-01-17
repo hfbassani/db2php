@@ -1,0 +1,48 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.afraid.poison</groupId>
+	<artifactId>db2php</artifactId>
+	<version>1.105</version>
+	<packaging>pom</packaging>
+	<name>db2php</name>
+	<url>http://code.google.com/p/db2php/</url>
+	<developers>
+		<developer>
+			<name></name>
+			<email></email>
+			
+		</developer>
+	</developers>
+	<scm>
+		<connection></connection>
+		<url>https://code.google.com/p/db2php/</url>
+	</scm>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<modules>
+		<module>db2phplib</module>
+		<module>db2phpcli</module>
+		<module>db2phpnb</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
