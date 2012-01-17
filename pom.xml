@@ -7,18 +7,29 @@
 	<version>1.105</version>
 	<packaging>pom</packaging>
 	<name>db2php</name>
+	<description>
+		Generate PHP entity classes from database tables
+	</description>
 	<url>http://code.google.com/p/db2php/</url>
 	<developers>
 		<developer>
-			<name></name>
-			<email></email>
-			
+			<name>Andreas Schnaiter</name>
+			<email>rc.poison@gmail.com</email>
 		</developer>
 	</developers>
+	<licenses>
+		<license>
+			<name>GNU GPL v3</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+		</license>
+	</licenses>
 	<scm>
-		<connection></connection>
-		<url>https://code.google.com/p/db2php/</url>
+		<connection>scm:git:https://code.google.com/p/db2php/</connection>
+		<url>http://code.google.com/p/db2php/source/browse/</url>
 	</scm>
+	<issueManagement>
+		<url>http://code.google.com/p/db2php/issues/list</url>
+	</issueManagement>
 	<build>
 		<plugins>
 			<plugin>
