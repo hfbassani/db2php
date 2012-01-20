@@ -99,7 +99,7 @@ public class CamelCaseFairy {
 		}
 		Set<StringOccurrence> allContained=getWordOccurrences(s);
 		int lastEnd=0;
-		StringBuffer sb=new StringBuffer(s);
+		StringBuilder sb=new StringBuilder(s);
 		for (StringOccurrence cw : allContained) {
 			if (lastEnd!=cw.getStart()) {
 				// CamelCase for gaps

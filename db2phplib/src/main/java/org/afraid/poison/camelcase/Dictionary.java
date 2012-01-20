@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.afraid.poison.camelcase;
 
 import java.io.BufferedReader;
@@ -24,10 +23,13 @@ import org.afraid.poison.common.IOUtil;
  * @author schnaiter
  */
 public class Dictionary {
-	public static abstract class  Descriptor {
+
+	public static abstract class Descriptor {
+
 		abstract public String[] getLanguageFiles();
+
 		abstract public String getId();
-		
+
 		public Set<String> getWordList() {
 			if (1==getLanguageFiles().length) {
 				return readDictionary(getLanguageFiles()[0]);
@@ -39,21 +41,21 @@ public class Dictionary {
 			return dictionary;
 		}
 	}
-	
-	public static abstract class  DescriptorSorted extends Descriptor {
+
+	public static abstract class DescriptorSorted extends Descriptor {
+
 		Comparator<CharSequence> comparator;
 
 		public DescriptorSorted(Comparator<CharSequence> comparator) {
 			this.comparator=comparator;
 		}
-		
+
 		@Override
 		public Set<String> getWordList() {
 			ArrayList<String> list=new ArrayList<String>(super.getWordList());
 			Collections.sort(list, comparator);
 			return new LinkedHashSet<String>(list);
 		}
-		
 	}
 
 	public static LinkedHashSet<String> readDictionary(InputStream in) {
@@ -79,8 +81,7 @@ public class Dictionary {
 
 	public static LinkedHashSet<String> readDictionary(String path) {
 		LinkedHashSet<String> dictionary=new LinkedHashSet<String>();
-		InputStream in=null;
-		in=Dictionary.class.getResourceAsStream(path);
+		InputStream in=Dictionary.class.getResourceAsStream(path);
 		if (null==in) {
 			return dictionary;
 		}
