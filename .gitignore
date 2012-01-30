@@ -17,3 +17,4 @@ one-jar
 /db2phpnb/target/
 googlecode_upload*
 /db2phpcli/target/
+/target/
