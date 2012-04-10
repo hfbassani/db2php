@@ -56,7 +56,7 @@
 		foreach ($this->getPrimaryKeyValues() as $fieldId=>$value) {
 			$filter[]=new DFC($fieldId, $value, DFC::EXACT_NULLSAFE);
 		}
-		return 0!=count(self::findByFilter(PDO $db, $filter, true));
+		return 0!=count(self::findByFilter($db, $filter, true));
 	}
 	
 	/**
