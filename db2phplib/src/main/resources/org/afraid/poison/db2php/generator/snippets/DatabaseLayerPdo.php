@@ -44,3 +44,31 @@
 	public static function isCacheStatements() {
 		return self::$cacheStatements;
 	}
+	
+	/**
+	 * check if this instance exists in the database
+	 *
+	 * @param PDO $db
+	 * @return bool
+	 */
+	public function existsInDatabase(PDO $db) {
+		$filter=array();
+		foreach ($this->getPrimaryKeyValues() as $fieldId=>$value) {
+			$filter[]=new DFC($fieldId, $value, DFC::EXACT_NULLSAFE);
+		}
+		return 0!=count(self::findByFilter(PDO $db, $filter, true));
+	}
+	
+	/**
+	 * Update to database if exists, otherwise insert
+	 *
+	 * @param PDO $db
+	 * @return mixed
+	 */
+	public function updateInsertToDatabase(PDO $db) {
+		if ($this->existsInDatabase($db)) {
+			$this->updateToDatabase($db);
+		} else {
+			$this->insertIntoDatabase($db);
+		}
+	}

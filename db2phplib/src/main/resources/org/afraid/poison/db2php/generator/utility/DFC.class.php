@@ -38,6 +38,10 @@ class DFC implements DFCInterface {
 	 */
 	const EXACT=0;
 	/**
+	 * match exact value
+	 */
+	const EXACT_NULLSAFE=128;
+	/**
 	 * fields value contains
 	 */
 	const CONTAINS=1;
@@ -192,6 +196,11 @@ class DFC implements DFCInterface {
 		$not=0!=(self::NOT&$mode);
 		if (self::EXACT==$mode) {
 			return '=';
+		} elseif (self::EXACT_NULLSAFE==$mode) {
+			if (null===$this->getValue()) {
+				return ' IS NULL';
+			}
+			return '=';
 		} elseif (self::NOT==$mode) {
 			return '!=';
 		} elseif (0!=(self::GREATER&$mode)) {
@@ -237,7 +246,12 @@ class DFC implements DFCInterface {
 	 */
 	public function getSqlValue() {
 		$mode=$this->getMode();
-		if (0!=(self::CONTAINS&$mode)) {
+		if (self::EXACT_NULLSAFE==$mode) {
+			if (null===$this->getValue()) {
+				return null;
+			}
+			return $this->getValue();
+		} elseif (0!=(self::CONTAINS&$mode)) {
 			return '%' . $this->getValue() . '%';
 		} elseif (0!=(self::BEGINS_WITH&$mode)) {
 			return $this->getValue() . '%';
