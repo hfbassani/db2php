@@ -67,8 +67,8 @@
 	 */
 	public function updateInsertToDatabase(PDO $db) {
 		if ($this->existsInDatabase($db)) {
-			$this->updateToDatabase($db);
+			return $this->updateToDatabase($db);
 		} else {
-			$this->insertIntoDatabase($db);
+			return $this->insertIntoDatabase($db);
 		}
 	}
