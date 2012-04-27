@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.afraid.poison</groupId>
 		<artifactId>db2php</artifactId>
-		<version>1.105</version>
+		<version>1.106</version>
 	</parent>
 	<artifactId>db2phpnb</artifactId>
 	<packaging>nbm</packaging>
