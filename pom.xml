@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.afraid.poison</groupId>
 	<artifactId>db2php</artifactId>
-	<version>1.106</version>
+	<version>1.107</version>
 	<packaging>pom</packaging>
 	<name>db2php</name>
 	<description>
